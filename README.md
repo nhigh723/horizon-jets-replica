@@ -148,3 +148,20 @@ No repo was created and nothing was pushed. Publish flow: create public repo
 `nhigh723/horizon-jets-replica`, push this directory to `main`, enable GitHub
 Pages (branch `main`, folder `/ (root)`). Verify live at
 `https://nhigh723.github.io/horizon-jets-replica/`.
+
+## Accuracy pass (Nov 15)
+
+After Nick approved the replica's look, an accuracy pass applied text-only
+fixes (same layout, same structure — no new pages, sections, or CSS changes)
+so the site reads as the small charter brokerage it is: fake testimonials out
+(replaced with honest "what to expect" content in the same card layout),
+Ferrari/NBAA logos removed, "Aquistions"/"Citaton"/"Aquisition" typos fixed,
+instant-booking and 24/7 claims removed, fleet and Jet Card program claims
+reframed as broker guidance, ARGUS/Wyvern partnership claims removed, the
+fictional team/founding story replaced with the small-broker story, and the
+exact Part 295 disclosure added to the footer of all 69 pages that have one
+(plus booking, FAQ, and About). 71 of 73 HTML files changed
+(`header/` and `hello-world/` untouched). Full edit list with old → new text:
+`CHANGES-accuracy.md`. Deliberately left for Nick's call: contact details,
+the site-title wording, JSON-LD `openingHours`, and the Privacy/Terms pages
+(still describe a Jet Card program and aircraft sales).
