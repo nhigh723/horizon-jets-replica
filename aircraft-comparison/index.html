@@ -512,7 +512,7 @@ window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(argumen
 <script id="jet-card-builder-script-js" src="../wp-content/plugins/jet-card-builder/assets/builder-script.js"></script>
 <script id="mapbox-gl-js-js" src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js?ver=2.15.0"></script>
 <script id="turf-js-js" src="https://cdn.jsdelivr.net/npm/@turf/turf@6/turf.min.js?ver=6.5.0"></script>
-<script id="jet-map-js" src="../wp-content/plugins/jet-comparison-tool-fixed-isolated/assets/map.js"></script>
+<script id="jet-map-js" src="https://horizonjets.com/wp-content/plugins/jet-comparison-tool-fixed-isolated/assets/map.js"></script>
 <script id="leadin-script-loader-js-js-extra">
 var leadin_wordpress = {"userRole":"visitor","pageType":"page","leadinPluginVersion":"11.3.75"};
 //# sourceURL=leadin-script-loader-js-js-extra
@@ -587,5 +587,29 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
 		<script>window.addEventListener('click', function (elem) { var _elem$target, _elem$target$dataset, _window, _window$_trfq; return (elem === null || elem === void 0 ? void 0 : (_elem$target = elem.target) === null || _elem$target === void 0 ? void 0 : (_elem$target$dataset = _elem$target.dataset) === null || _elem$target$dataset === void 0 ? void 0 : _elem$target$dataset.eid) && ((_window = window) === null || _window === void 0 ? void 0 : (_window$_trfq = _window._trfq) === null || _window$_trfq === void 0 ? void 0 : _window$_trfq.push(["cmdLogEvent", "click", elem.target.dataset.eid]));});</script>
 		<script src='https://img1.wsimg.com/traffic-assets/js/tccl-tti.min.js' onload="window.tti.calculateTTI()"></script>
 		
+<script>
+/* Preview-hosting shim (GitHub Pages subpath only — not part of the live site):
+   the live map.js builds "More Details" links as /aircraft/<slug>, which would
+   404 under a subpath. Rewrite them to the correct relative path as the
+   route-results grid renders. */
+(function () {
+  function fixLinks(root) {
+    var scope = (root instanceof Element) ? root : document;
+    scope.querySelectorAll('a[href^="/aircraft/"]').forEach(function (a) {
+      a.setAttribute('href', '../aircraft/' + a.getAttribute('href').slice(10));
+    });
+    if (root instanceof Element && root.tagName === 'A') {
+      var h = root.getAttribute('href');
+      if (h && h.indexOf('/aircraft/') === 0) root.setAttribute('href', '../aircraft/' + h.slice(10));
+    }
+  }
+  fixLinks(document);
+  new MutationObserver(function (mutations) {
+    mutations.forEach(function (m) {
+      m.addedNodes.forEach(function (n) { if (n.nodeType === 1) fixLinks(n); });
+    });
+  }).observe(document.body, { childList: true, subtree: true });
+})();
+</script>
 </body>
 </html>

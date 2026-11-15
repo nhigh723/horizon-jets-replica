@@ -40,8 +40,8 @@ are no root-absolute internal references and no `<base>` tag.
 
 ## What is local vs hotlinked
 
-- **Local (204 files, 13,110,292 bytes / 12.50 MiB):** all 73 HTML pages, all
-  CSS (79) and JS (39), all SVG (9, including the Font Awesome icon fonts),
+- **Local (203 files, 13,088,477 bytes / 12.48 MiB):** all 73 HTML pages, all
+  CSS (79) and JS (38), all SVG (9, including the Font Awesome icon fonts),
   `robots.txt` (verbatim from live), `.nojekyll`, and a trimmed
   `airports-data.json` (see below).
 - **Hotlinked to `https://horizonjets.com` (same owner):** all 303 raster
@@ -52,7 +52,13 @@ are no root-absolute internal references and no `<base>` tag.
   push tool only handles text files, so the 98 `url()` font references in 6
   CSS files were rewritten to absolute live URLs instead. Fonts load
   cross-origin fine via CSS; if the WordPress site ever goes away, the fonts
-  fall back to system fonts.
+  fall back to system fonts. **Also hotlinked: `map.js`** (the comparison-page
+  map script, 23 KB) — it contains Nick's Mapbox public token, and GitHub's
+  secret scanner rejects any push containing it, so the file loads from the
+  live site instead of the repo. The token is a `pk.*` public token, already
+  published on the live site; the map works exactly the same. Its
+  `fetch('../wp-content/uploads/2025/06/airports-data.json')` calls resolve
+  against the preview page, so they still hit the local trimmed airport file.
 - **Still absolute by design:** JSON-LD schema URLs, canonical URLs, og: URLs
   (identifiers, not navigation); feed URLs (not mirrored); `wp-json` API
   endpoints (see below); Google Fonts; Mapbox CDN + geocoding API.
@@ -124,10 +130,17 @@ from the preview origin).
   `/aircraft-comparison/`, `/aircraft/gulfstream-g650/`, `/aircraft/page/3/`,
   `/booking/`, `map.js`, `airports-data.json`, an Elementor CSS file, and
   `robots.txt` all returned HTTP 200.
-- Totals: **204 files, 13,110,292 bytes (12.50 MiB)** — inside the 16 MiB /
+- Totals: **203 files, 13,088,477 bytes (12.48 MiB)** — inside the 16 MiB /
   2,000-file push limit. (Builder's original totals were 237 files /
   14.48 MiB; the 33 binary font files were hotlinked instead of pushed —
-  see above — dropping 2.0 MB.) All pushed files verified valid UTF-8.
+  see above — dropping 2.0 MB, and `map.js` was hotlinked after GitHub's
+  secret scanner rejected the Mapbox token it contains.) All pushed files
+  verified valid UTF-8.
+- Preview-only shim: `aircraft-comparison/index.html` carries a small inline
+  script (commented in the file) that rewrites the map's JS-generated
+  "More Details" links from `/aircraft/<slug>` to `../aircraft/<slug>` as
+  the route-results grid renders — the only root-absolute internal link in
+  any JS file, and it would 404 under the subpath. Not part of the live site.
 
 ## Publishing (parent's step, not done here)
 
