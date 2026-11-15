@@ -165,3 +165,24 @@ exact Part 295 disclosure added to the footer of all 69 pages that have one
 `CHANGES-accuracy.md`. Deliberately left for Nick's call: contact details,
 the site-title wording, JSON-LD `openingHours`, and the Privacy/Terms pages
 (still describe a Jet Card program and aircraft sales).
+
+## Accuracy pass, round 2 (Nov 15)
+
+Nick then ordered the whole site made fully real — no placeholders, no fake
+stuff, ready to market — and gave his real number, 603-670-6361. Round 2
+(applied in place, same design): the real phone number everywhere (contact
+page, footer of all 71 footer-bearing pages as a tap-to-call link, JSON-LD);
+Boston → Southwest Florida (region only, no invented street address); the
+site title shortened to "Horizon Jets | Private Jet Charter Broker" on all
+73 pages (titles, meta/OG tags, JSON-LD, and the Elementor frontend config,
+including its URL-encoded titles); `openingHours` removed from JSON-LD;
+Privacy and Terms rewritten as real brokerage documents (no Jet Card program
+or aircraft sales, no payment collection, Florida governing law — Nick to
+confirm); the empty `/empty-leg/` page filled with request-based explainer
+content from the approved rewrite (no live inventory claimed); nav
+"Testimonials" → "What to Expect" (page slug unchanged); homepage meta
+descriptions rewritten to request-a-quote wording; the MetForm page's
+placeholder image swapped for the site's share image; a full placeholder
+sweep (zero `lorem`, `[Insert …]`, `555-` numbers, `Boston`, `Aquistions`,
+or `Testimonials` labels left). 73 of 73 HTML files changed. Full edit list:
+`CHANGES-accuracy.md`, "Round 2" section.
